@@ -1,0 +1,66 @@
+page essay release {
+  width: 100%;
+  min-width: 290px;
+}
+page essay release preamble {
+  white-space: pre;
+  text-decoration: underline;
+}
+page essay release a-title {
+  font-weight: bold;
+  font-size: 1.5em;
+  justify-content: center;
+  font-family: Noto Serif TC;
+  min-width: 290px;
+  display: flex;
+  margin-top: 1em;
+}
+page essay release p {
+  margin: 1em 0;
+  line-height: 2em;
+}
+page essay release subtitle {
+  font-weight: bold;
+  font-size: 1em;
+  font-family: Noto Serif TC;
+  min-width: 290px;
+  display: flex;
+  margin-top: 1em;
+}
+page essay release misc {
+  white-space: pre-line;
+  overflow: hidden;
+  width: 100%;
+  display: block;
+  font-family: Lato;
+}
+page essay release misc question:before {
+  content: "\a";
+  display: block;
+}
+page essay release misc answer {
+  font-style: italic;
+}
+page essay release ps {
+  margin-top: 2em;
+  line-height: 2em;
+  display: block;
+}
+page essay release ~ release {
+  margin-top: 6em;
+}
+page essay release ~ release:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: translateY(-3em);
+  background-image: linear-gradient(to right, black 33%, rgba(255, 255, 255, 0) 0%);
+  background-position: bottom;
+  background-size: 10px 1px;
+  background-repeat: repeat-x;
+}
+page essay a {
+  word-break: break-all;
+}

@@ -1,0 +1,289 @@
+body {
+  margin: 0;
+  font-family: Noto Sans TC, Vidaloka;
+  background-color: #e8e8e8;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+body page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+body page navs {
+  background: black;
+  padding: 1em 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  transition: background;
+  transition-duration: 0.5s;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+body page navs a-nav {
+  margin: 0 1.8em;
+}
+body page navs a-nav a {
+  text-decoration: none;
+  transition: color;
+  transition-duration: 0.5s;
+  font-family: Vidaloka;
+}
+body page navs a-nav:not([x-active]) a {
+  color: #aaa;
+}
+body page navs a-nav[x-active] a {
+  color: white;
+  pointer-events: none;
+}
+body page navs a-nav:hover a {
+  color: white;
+}
+body page navs[x-force-hamburger] {
+  background: transparent;
+}
+body page navs[x-force-hamburger] [x-hamburger] {
+  display: block;
+  width: 60px;
+  height: 60px;
+  top: 0;
+  left: 0;
+  position: absolute;
+  cursor: pointer;
+  opacity: 0;
+  /* hide this */
+  z-index: 2;
+  /* and place it over the hamburger */
+  -webkit-touch-callout: none;
+}
+body page navs[x-force-hamburger] [x-hamburger]:checked:hover ~ hamburger slice {
+  background-color: white;
+}
+body page navs[x-force-hamburger] [x-hamburger]:checked ~ hamburger slice:nth-child(1) {
+  transform: translate(0, 11px) rotate(-45deg);
+}
+body page navs[x-force-hamburger] [x-hamburger]:checked ~ hamburger slice:nth-child(2) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+body page navs[x-force-hamburger] [x-hamburger]:checked ~ hamburger slice:nth-child(3) {
+  opacity: 1;
+  transform: translate(0, -6px) rotate(45deg);
+}
+body page navs[x-force-hamburger] [x-hamburger]:checked ~ hamburger:after {
+  filter: opacity(0);
+}
+body page navs[x-force-hamburger] [x-hamburger]:checked ~ a-nav {
+  display: unset;
+  height: auto;
+  opacity: 1;
+  margin-top: 0.25em;
+}
+body page navs[x-force-hamburger] [x-hamburger]:checked ~ a-nav[x-active] a {
+  color: white;
+}
+body page navs[x-force-hamburger] [x-hamburger]:checked ~ a-nav a:hover {
+  color: white;
+}
+body page navs[x-force-hamburger] [x-hamburger]:not(:checked) ~ a-nav {
+  opacity: 0;
+  height: 0;
+  transition: opacity, margin, height;
+  transition-duration: 0.5s;
+}
+body page navs[x-force-hamburger] [x-hamburger]:not(:checked) ~ a-nav:first-of-type {
+  margin-top: -2em;
+}
+body page navs[x-force-hamburger] hamburger {
+  display: flex;
+  flex-direction: column;
+  transform: translate(12px, 0) scale(0.7);
+  position: absolute;
+  top: 14.5px;
+  left: -1px;
+}
+body page navs[x-force-hamburger] hamburger slice {
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  background: #aaa;
+  border-radius: 3px;
+  z-index: 1;
+  transform-origin: 4px 0px;
+  transform-origin: center;
+  transition: transform 0.2s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+}
+body page navs[x-force-hamburger] hamburger:after {
+  content: " ";
+  position: absolute;
+  background: white;
+  top: -10px;
+  bottom: -10px;
+  left: -10px;
+  right: -10px;
+  filter: blur(10px);
+}
+body page navs[x-force-hamburger] a-nav {
+  opacity: 0;
+}
+body page navs[x-force-hamburger] a-nav:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4em;
+  margin-top: -1.5em;
+  z-index: -100;
+  background: black;
+}
+@media (max-width: 720px) {
+  body page navs[x-force-hamburger] {
+    flex-direction: column;
+    padding-left: 10vw;
+    min-height: 1.5em;
+  }
+  body page navs[x-force-hamburger] [x-hamburger]:checked ~ a-nav {
+    margin-top: 1.5em;
+  }
+  body page navs[x-force-hamburger] [x-hamburger]:checked ~ a-nav:first-of-type {
+    margin-top: 0.2em;
+  }
+}
+@media (min-width: 600px) {
+  body page navs:not([x-force-hamburger]) [x-hamburger] {
+    display: none;
+  }
+  body page navs:not([x-force-hamburger]) hamburger {
+    display: none;
+  }
+  body page navs:not([x-force-hamburger]) a-nav {
+    transition: none;
+    transition-duration: 0s;
+  }
+}
+@media (max-width: 600px) {
+  body page navs:not([x-force-hamburger]) {
+    flex-direction: column;
+    padding-left: 10vw;
+    min-height: 1.5em;
+    background: transparent;
+  }
+  body page navs:not([x-force-hamburger]) [x-hamburger] {
+    display: block;
+    width: 60px;
+    height: 60px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+    /* hide this */
+    z-index: 2;
+    /* and place it over the hamburger */
+    -webkit-touch-callout: none;
+  }
+  body page navs:not([x-force-hamburger]) [x-hamburger]:checked:hover ~ hamburger slice {
+    background-color: white;
+  }
+  body page navs:not([x-force-hamburger]) [x-hamburger]:checked ~ hamburger slice:nth-child(1) {
+    transform: translate(0, 11px) rotate(-45deg);
+  }
+  body page navs:not([x-force-hamburger]) [x-hamburger]:checked ~ hamburger slice:nth-child(2) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+  }
+  body page navs:not([x-force-hamburger]) [x-hamburger]:checked ~ hamburger slice:nth-child(3) {
+    opacity: 1;
+    transform: translate(0, -6px) rotate(45deg);
+  }
+  body page navs:not([x-force-hamburger]) [x-hamburger]:checked ~ hamburger:after {
+    filter: opacity(0);
+  }
+  body page navs:not([x-force-hamburger]) [x-hamburger]:checked ~ a-nav {
+    display: unset;
+    height: auto;
+    opacity: 1;
+    margin-top: 1.5em;
+  }
+  body page navs:not([x-force-hamburger]) [x-hamburger]:checked ~ a-nav:first-of-type {
+    margin-top: 0.2em;
+  }
+  body page navs:not([x-force-hamburger]) [x-hamburger]:checked ~ a-nav[x-active] a {
+    color: white;
+  }
+  body page navs:not([x-force-hamburger]) [x-hamburger]:checked ~ a-nav a:hover {
+    color: white;
+  }
+  body page navs:not([x-force-hamburger]) [x-hamburger]:not(:checked) ~ a-nav {
+    opacity: 0;
+    height: 0;
+    transition: opacity, margin, height;
+    transition-duration: 0.5s;
+  }
+  body page navs:not([x-force-hamburger]) [x-hamburger]:not(:checked) ~ a-nav:first-of-type {
+    margin-top: -2em;
+  }
+  body page navs:not([x-force-hamburger]) hamburger {
+    display: flex;
+    flex-direction: column;
+    transform: translate(12px, 0) scale(0.7);
+    position: absolute;
+    top: 14.5px;
+    left: -1px;
+  }
+  body page navs:not([x-force-hamburger]) hamburger slice {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    background: #aaa;
+    border-radius: 3px;
+    z-index: 1;
+    transform-origin: 4px 0px;
+    transform-origin: center;
+    transition: transform 0.2s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+  }
+  body page navs:not([x-force-hamburger]) hamburger:after {
+    content: " ";
+    position: absolute;
+    background: white;
+    top: -10px;
+    bottom: -10px;
+    left: -10px;
+    right: -10px;
+    filter: blur(10px);
+  }
+  body page navs:not([x-force-hamburger]) a-nav:after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 4em;
+    margin-top: -1.5em;
+    z-index: -100;
+    background: black;
+  }
+}
+body page essay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: normal;
+  padding: 3em 80px;
+  margin: 0;
+  transition: margin;
+  transition-duration: 0.5s;
+}
+@media (min-width: 600px) {
+  body page essay {
+    margin-top: 3em;
+  }
+}

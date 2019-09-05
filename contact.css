@@ -1,0 +1,8 @@
+page contact {
+  min-width: 290px;
+  width: 100%;
+  margin: 1em;
+}
+page a {
+  word-break: break-all;
+}
